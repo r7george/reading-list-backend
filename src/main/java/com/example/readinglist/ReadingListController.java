@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class ReadingListController {
-
     @Autowired
     ReadingListRepository repository;
 
@@ -19,7 +20,8 @@ public class ReadingListController {
         return repository.findAll();
     }
 
-    @PostMapping("/reading-list/add")
+    @PostMapping("/reading-list")
+    @Transactional
     public String addToReadingList(@RequestBody Book book) {
         repository.save(book);
         return "Book added: " + book.getBookName();

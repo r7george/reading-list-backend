@@ -1,9 +1,6 @@
 package com.example.readinglist;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 // this is the model
@@ -16,6 +13,7 @@ public class Book {
     private String addedBy;
     private String bookName;
     private String author;
+    @ElementCollection(targetClass = String.class) // when using list in SpringBoot it has to be specified like this
     private List<String> genres;
     private int yearPublished;
     private String publisher;
@@ -27,6 +25,10 @@ public class Book {
         this.genres = genres;
         this.yearPublished = yearPublished;
         this.publisher = publisher;
+    }
+
+    public Book() {
+
     }
 
     public int getId() {
