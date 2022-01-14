@@ -13,18 +13,17 @@ public class Book {
     private String addedBy;
     private String bookName;
     private String author;
-    @ElementCollection(targetClass = String.class) // when using list in SpringBoot it has to be specified like this
-    private List<String> genres;
-    private int yearPublished;
-    private String publisher;
+//    @ElementCollection(targetClass = String.class) // when using list in SpringBoot it has to be specified like this
+    private String genres;
+    private String description;
 
-    public Book(String addedBy, String bookName, String author, List<String> genres, int yearPublished, String publisher) {
+
+    public Book(String addedBy, String bookName, String author, String genres, String description) {
         this.addedBy = addedBy;
         this.bookName = bookName;
         this.author = author;
         this.genres = genres;
-        this.yearPublished = yearPublished;
-        this.publisher = publisher;
+        this.description = description;
     }
 
     public Book() {
@@ -47,15 +46,11 @@ public class Book {
         return author;
     }
 
-    public List<String> getGenres() {
+    public String getGenres() {
         return genres;
     }
 
-    public int getYearPublished() {
-        return yearPublished;
-    }
-
-    public String getPublisher() {
-        return publisher;
+    public String getDescription() {
+        return description;
     }
 }
