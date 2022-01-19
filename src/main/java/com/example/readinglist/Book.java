@@ -13,8 +13,9 @@ public class Book {
     private String addedBy;
     private String bookName;
     private String author;
-//    @ElementCollection(targetClass = String.class) // when using list in SpringBoot it has to be specified like this
+    @Column(length = 1000)
     private String genres;
+    @Column(length = 2000)
     private String description;
 
 
