@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReadingListController {
     @Autowired
     ReadingListRepository repository;
@@ -36,6 +37,14 @@ public class ReadingListController {
     public ResponseEntity<String> deleteBook(@PathVariable String id) {
         repository.deleteBookByid(Integer.parseInt(id));
         return ResponseEntity.status(HttpStatus.OK).body("Book with ID: " + id + "has been deleted");
+    }
+
+
+    // have id within the body too for the update to work
+    @PutMapping("/reading-list/{id}")
+    public ResponseEntity<String> updateBookInfo(@PathVariable String id, @RequestBody Book book) {
+        repository.save(book);
+        return ResponseEntity.status(HttpStatus.OK).body("Event with id " + id + " has been updated");
     }
 
 }
